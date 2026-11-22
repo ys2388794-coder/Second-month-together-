@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
-import { rng } from "../lib/hand";
-import { Arrow, Asterisk, Heart, Reveal, Scribble } from "./Doodles";
+import { rng } from "../lib/hands";
+import { Arrow, Asterisk, Heart, Reveal, Scribble } from "./Doodle";
 
 const MESSAGES = [
   "أنا عارف إني غلطت، وعارف إنك زعلانة. بس أنا لسه هنا، ومش رايح في حتة.",

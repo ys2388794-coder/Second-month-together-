@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { rng, wobbleLine } from "../lib/hand";
-import { Arrow, CoffeeStain, Heart, Reveal, Rope, Scribble } from "./Doodles";
+import { rng, wobbleLine } from "../lib/hands";
+import { Arrow, CoffeeStain, Heart, Reveal, Rope, Scribble } from "./Doodle";
 
 /* ---------- doodles drawn inside the "photos" ---------- */
 function ChatDoodle() {

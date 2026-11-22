@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Arrow, Asterisk, CoffeeStain, Heart, Scribble } from "./Doodles";
+import { Arrow, Asterisk, CoffeeStain, Heart, Scribble } from "./Doodle";
 
 // 24 September 2026, local midnight
 const START = new Date(2026, 8, 24, 0, 0, 0).getTime();

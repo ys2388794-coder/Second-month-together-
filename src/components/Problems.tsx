@@ -1,4 +1,4 @@
-import { Arrow, Asterisk, Reveal, Scribble } from "./Doodles";
+import { Arrow, Asterisk, Reveal, Scribble } from "./Doodle";
 
 const NOTES = [
   {

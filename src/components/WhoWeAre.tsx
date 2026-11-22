@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { rng, wobbleLine } from "../lib/hand";
-import { Arrow, Asterisk, CoffeeStain, Heart, RainStreaks, Reveal, Rope, Scribble } from "./Doodles";
+import { rng, wobbleLine } from "../lib/hands";
+import { Arrow, Asterisk, CoffeeStain, Heart, RainStreaks, Reveal, Rope, Scribble } from "./Doodle";
 
 /* ---------- tally marks: each stroke = 10 times ---------- */
 function Tally({ count, unit = 10, color = "#2b2420" }: { count: number; unit?: number; color?: string }) {

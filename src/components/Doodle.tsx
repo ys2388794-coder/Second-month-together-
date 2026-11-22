@@ -1,5 +1,5 @@
 import { useId, type CSSProperties, type ReactNode } from "react";
-import { blobPath, tornEdgePath, useReveal, wobbleLine } from "../lib/hand";
+import { blobPath, tornEdgePath, useReveal, wobbleLine } from "../lib/hands";
 import { cn } from "../utils/cn";
 
 /* ---------- scroll reveal wrapper ---------- */

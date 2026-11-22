@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { wobbleLine } from "../lib/hand";
-import { Asterisk, CoffeeStain, Heart, Reveal, Rope, Scribble } from "./Doodles";
+import { wobbleLine } from "../lib/hands";
+import { Asterisk, CoffeeStain, Heart, Reveal, Rope, Scribble } from "./Doodle";
 
 type Promise_ = {
   title: string;

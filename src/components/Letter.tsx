@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { blobPath } from "../lib/hand";
-import { Asterisk, CoffeeStain, Heart, Reveal } from "./Doodles";
+import { blobPath } from "../lib/hands";
+import { Asterisk, CoffeeStain, Heart, Reveal } from "./Doodle";
 
 function Panel({
   children,

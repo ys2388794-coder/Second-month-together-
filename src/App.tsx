@@ -5,7 +5,7 @@ import Promises from "./components/Promises";
 import Problems from "./components/Problems";
 import Timeline from "./components/Timeline";
 import Final from "./components/Final";
-import { TornEdge } from "./components/Doodles";
+import { TornEdge } from "./components/Doodle";
 
 export default function App() {
   return (
