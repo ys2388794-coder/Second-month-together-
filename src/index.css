@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f5eedd;
+  --color-paper-dark: #eadfc6;
+  --color-cream: #fbf5e6;
+  --color-ink: #1e1e1e;
+  --color-pine: #1f3d2b;
+  --color-rain: #6b7378;
+  --color-blush: #f2d7d5;
+  --color-cocoa: #6b4a3a;
+  --color-rope: #8b2e2e;
+  --color-rope-dark: #4a1717;
+
+  --font-hand: "Playpen Sans Arabic", "Cairo", system-ui, sans-serif;
+  --font-title: "Aref Ruqaa", "Playpen Sans Arabic", serif;
+  --font-body: "Cairo", system-ui, sans-serif;
+  --font-num: "Amatic SC", "Playpen Sans Arabic", cursive;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background-color: #f5eedd;
+    /* paper grain: pure noise, no gradient */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.3  0 0 0 0 0.18  0 0 0 0.16 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    color: #2b2420;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+}
+
+/* ---------- handmade building blocks ---------- */
+
+.grain-dark {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.grain-paper {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.3  0 0 0 0 0.18  0 0 0 0.13 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ruled notebook lines, 40px apart */
+.ruled {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><path d='M0 39.5 H40' stroke='%23a9b7c4' stroke-opacity='0.55' stroke-width='1.2'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.3  0 0 0 0 0.18  0 0 0 0.13 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 40px 40px, 220px 220px;
+  background-position: 0 6px, 0 0;
+}
+
+/* stitched border (thread sewn onto the paper) */
+.stitch {
+  position: relative;
+}
+.stitch::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 2px var(--stitch-style, dashed) var(--stitch, #8b2e2e);
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.stitch.stitch-lift::after {
+  inset: 9px 9px 24px 9px;
+}
+
+/* torn paper bottom edges */
+.torn-b1 {
+  clip-path: polygon(0 0, 100% 0, 100% 96%, 96% 98.5%, 92% 96.5%, 87% 99%, 82% 96%, 76% 98.5%, 70% 96.8%, 64% 99%, 58% 96.5%, 52% 98.8%, 46% 96.4%, 40% 99%, 34% 96.6%, 28% 98.6%, 21% 96.2%, 15% 98.8%, 9% 96.5%, 4% 98.6%, 0 96.5%);
+}
+.torn-b2 {
+  clip-path: polygon(0 0, 100% 0, 100% 97.5%, 94% 95.6%, 89% 98.4%, 83% 96.2%, 77% 98.6%, 72% 95.8%, 66% 98.2%, 60% 96%, 53% 98.6%, 47% 95.8%, 41% 98.4%, 35% 96%, 29% 98.8%, 22% 96.4%, 16% 98.2%, 10% 95.9%, 5% 98.4%, 0 96%);
+}
+.torn-t {
+  clip-path: polygon(0 2.5%, 5% 0.6%, 10% 2.4%, 17% 0.4%, 23% 2.2%, 30% 0.5%, 37% 2.4%, 44% 0.6%, 51% 2.3%, 58% 0.4%, 65% 2.2%, 72% 0.6%, 79% 2.4%, 86% 0.5%, 93% 2.2%, 100% 0.6%, 100% 100%, 0 100%);
+}
+
+/* masking tape */
+.tape {
+  position: absolute;
+  width: 92px;
+  height: 28px;
+  background-color: rgba(214, 192, 130, 0.78);
+  clip-path: polygon(0 0, 4% 14%, 0 28%, 4% 42%, 0 57%, 4% 71%, 0 86%, 3% 100%, 100% 100%, 96% 86%, 100% 71%, 96% 57%, 100% 42%, 96% 28%, 100% 14%, 96% 0);
+  z-index: 5;
+}
+
+/* wooden clothes peg */
+.peg {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 16px;
+  height: 46px;
+  margin-left: -8px;
+  background: #b48a58;
+  border-radius: 3px 3px 5px 5px;
+  box-shadow: 1px 2px 0 rgba(30, 20, 10, 0.3);
+  z-index: 6;
+}
+.peg::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 2px;
+  height: 22px;
+  margin-left: -1px;
+  background: #6b4a2a;
+}
+.peg::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 26px;
+  height: 4px;
+  background: #8a8a85;
+  border-radius: 2px;
+}
+
+.paper-shadow {
+  box-shadow: 2px 3px 0 rgba(60, 40, 20, 0.16), 5px 8px 14px rgba(60, 40, 20, 0.18);
+}
+
+/* handwritten underline wobble for titles */
+.ink-title {
+  font-family: var(--font-title);
+  line-height: 1.25;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes rain-fall {
+  from {
+    transform: translateY(-120px);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
+.rain-drop {
+  position: absolute;
+  top: 0;
+  width: 1.5px;
+  background: #8e979c;
+  opacity: 0.35;
+  animation: rain-fall linear infinite;
+  will-change: transform;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) rotate(var(--r, 0deg)) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--r, 0deg)) scale(1);
+  }
+}
+.pop-in {
+  animation: pop-in 0.5s ease-out both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: rotate(calc(var(--r, 0deg) + 1.2deg));
+  }
+}
+.sway {
+  transform-origin: top center;
+  animation: sway 6s ease-in-out infinite;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.draw {
+  stroke-dasharray: var(--len, 300);
+  stroke-dashoffset: var(--len, 300);
+  animation: draw 1.6s ease-out 0.3s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rain-drop,
+  .sway {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .pop-in,
+  .draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
